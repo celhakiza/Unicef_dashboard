@@ -187,11 +187,10 @@ def adole(resid):
     Output('out-malnutrition','figure'),
     Input('malnutrition','value'))
 def mal(mal):
-    df_malnutrition_df=df_malnutrition[df_malnutrition['indicator'].isin(mal)]
+    df_malnutrition_df = df_malnutrition[df_malnutrition['indicator'].isin(mal)]
     fig = px.line(df_malnutrition_df,
-                 x='Year',
+                 x='year',
                  y=['Both','Male','Female'],
-                  custom_data=['indicator'],
                   color='indicator')
     fig.update_layout(xaxis_title='Year',yaxis_title='Percentage of malnutrition', title='Trend in malnutrition indicators')
     fig.update_traces(showlegend = False)

@@ -189,7 +189,7 @@ def adole(resid):
 def mal(mal):
     df_malnutrition_df=df_malnutrition[df_malnutrition['indicator'].isin(mal)]
     fig = px.line(df_malnutrition_df,
-                 x='Year',
+                 x='year',
                  y=['Both','Male','Female'],
                   custom_data=['indicator'],
                   color='indicator')
