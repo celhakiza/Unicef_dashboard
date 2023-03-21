@@ -9,7 +9,7 @@ import plotly.express as px
 
 #register page
 
-dash.register_page(__name__,path='/',order=0)
+dash.register_page(__name__,order=1)
 
 #import datasets into pycharm
 df_adolescent_birthrate = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\adolescent_res_melt.csv')

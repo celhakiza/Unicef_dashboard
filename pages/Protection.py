@@ -7,7 +7,7 @@ import dash_bootstrap_components as dbc
 from dash import dcc
 import plotly.express as px
 
-dash.register_page(__name__,order=1)
+dash.register_page(__name__,order=2)
 
 #import dataset
 df_protection_female_violence = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\protection_female_violence.csv')

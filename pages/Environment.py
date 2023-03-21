@@ -12,7 +12,7 @@ import plotly.express as px
 df_enviro_water = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\environ_drinking_water.csv') #water data
 df_enviro_sanitation = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\environment_sanitation.csv')
 
-dash.register_page(__name__,order=2)
+dash.register_page(__name__,order=3)
 
 layout = dbc.Container([
     dbc.Row([

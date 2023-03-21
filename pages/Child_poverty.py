@@ -8,6 +8,6 @@ from dash import dcc
 import plotly.express as px
 
 #import dataset
-dash.register_page(__name__,order=4)
+dash.register_page(__name__,order=5)
 df_child_poverty = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\children_poverty.csv')
 layout = dbc.Container([])

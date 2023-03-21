@@ -7,7 +7,7 @@ import dash_bootstrap_components as dbc
 from dash import dcc
 import plotly.express as px
 
-dash.register_page(__name__,order=3)
+dash.register_page(__name__,order=4)
 
 #import datasets
 df_organized = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\df_learning.csv') #organized learning
