@@ -28,7 +28,7 @@ header = dbc.Navbar(
         fluid=True,
     ),
     dark=True,
-    color='green'
+    color='blue'
 )
 
 app.layout = dbc.Container([header, dash.page_container], fluid=True)
