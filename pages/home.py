@@ -72,7 +72,7 @@ layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.Label('Survive and thrive',className='text-primary mb-4 font-weight-bold'),
+            html.Div('Survive and thrive',className='text-primary font-weight-bold m-3'),
             html.A([
                 html.Img(
                     src='https://www.interiorhealth.ca/sites/default/files/styles/details_page_banner_mobile/public/2021-10/Children%20%26%20Youth%20Health%20Banner.png?itok=PSS8vt_J',
@@ -88,7 +88,7 @@ layout = dbc.Container([
         ],width=4),
 
         dbc.Col([
-            html.Label('Child Poverty',className='text-primary mb-4 font-weight-bold'),
+            html.Div('Child Poverty',className='text-primary font-weight-bold m-3'),
             html.A([
                 html.Img(
                     src='https://www.compassion.com/Images/effects-of-poverty-on-children_144714_640x276.jpg',
@@ -101,16 +101,60 @@ layout = dbc.Container([
                    'Children living below the national poverty line, children living in all its dimensions according to national definitions \n'
                    'and proportions of child populations covered by social protection floors/systems',className='text-info bg-light pt-3')
         ],width=4),
+
         dbc.Col([
-            html.Label('Population',className='text-primary mb-4 font-weight-bold'),
+            html.Div('Population',className='text-primary font-weight-bold m-4'),
             html.A([
                 html.Img(
                     src='https://thewhistler.ng/wp-content/uploads/2017/10/Africa-children-1.jpg',
                     style={'height' : '60%','width': '30%',
                            'float' : 'left','position' : 'static',
                            'padding-top' : 0,'padding-right' : 0})
-            ],href='http://127.0.0.1:6500/population')
+            ],href='http://127.0.0.1:6500/population'),
+            html.P('This part shows the population who are children in Rwanda. the data used is from fifth Rwanda \n'
+                   'population and census carried out in 2022. the data are disaggregated by gender and age group.',className='text-info bg-light pt-3')
         ])
+    ]),
+    html.Br(),
+    html.Br(),
+    html.Br(),
+    dbc.Row([
+        dbc.Col([
+        html.A([
+            html.Img(
+                src='https://getinthepicture.org/sites/default/files/images/partner/logos/unicef.png',
+                style={
+                        'height' :'100%','width':'30%',
+                        'padding-top' :0,'padding-bottom':0
+                }
+            )
+        ])
+        ],width=4),
+
+        dbc.Col([
+            html.A([
+                html.Img(
+                    src='https://cdn.vectorstock.com/i/preview-1x/27/01/rwanda-flag-design-vector-45422701.jpg',
+                    style={
+                        'height' :'100%','width':'50%',
+                        'padding-top' :0,'padding-bottom':0
+                    }
+                )
+            ])
+        ],width=4),
+
+        dbc.Col([
+            html.A([
+                html.Img(
+                    src='https://pbs.twimg.com/profile_images/1115228529812287489/5ciAZeIe_400x400.png',
+                    style={
+                        'height' :'100%','width':'30%',
+                        'padding-top' :0,'padding-bottom':0
+                    }
+                )
+            ])
+        ],width=4)
+
     ])
 
 
