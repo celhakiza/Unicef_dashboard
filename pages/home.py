@@ -137,6 +137,7 @@ layout = dbc.Container([
                     src='https://cdn.vectorstock.com/i/preview-1x/27/01/rwanda-flag-design-vector-45422701.jpg',
                     style={
                         'height' :'100%','width':'50%',
+                        'float':'center', 'position':'relative',
                         'padding-top' :0,'padding-bottom':0
                     }
                 )
@@ -149,6 +150,7 @@ layout = dbc.Container([
                     src='https://pbs.twimg.com/profile_images/1115228529812287489/5ciAZeIe_400x400.png',
                     style={
                         'height' :'100%','width':'30%',
+                        'float':'right','position':'relative',
                         'padding-top' :0,'padding-bottom':0
                     }
                 )
