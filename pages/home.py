@@ -25,11 +25,11 @@ layout = dbc.Container([
 
                     style={'height' : '80%','width' : '30%',
                            'float' : 'left','position' : 'relative',
-                           'padding-top' : 3,'padding-right' : 0},className='pt-4')
+                           'padding-top' : 3,'padding-right' : 0},className='w-30 h-30')
 
            ],href='http://127.0.0.1:6500/protection'),
            html.P('Children protection indicators includes protection of young girls from getting married or union at early ages \n'
-                  'and protects girls to any other kind of violence such as sexual violence, physical violence and psychological violence.\n'
+                  'and protects girls to any other violence.\n'
                   'there are also indicators related to preventing child labors and the right of \n'
                   'children to be registered in civil authority',className='text-info bg-light pt-3')
            ],width=4),
@@ -44,12 +44,10 @@ layout = dbc.Container([
                            'float' : 'left','position' : 'static',
                            'padding-top' : 3,'padding-right' : 0}
 
-                ,className='pt-4')
+                ,className='w-30 h-30')
             ],href='http://127.0.0.1:6500/environment'),
             html.P('Children Environment related indicators includes indicators related to access to drinking water services\n'
-                   'and access to sanitation services. the indicators includes also the proportions of population \n'
-                   'with a basic handwashing facility with soap and water available on premises \n'
-                   'and the proportion of population practicing open defecation.',className='text-info bg-light pt-3')
+                   'and access to sanitation services.',className='text-info bg-light pt-3')
         ],width=4),
 
         dbc.Col([
@@ -60,13 +58,12 @@ layout = dbc.Container([
                     style={'height' : '80%','width': '30%',
                            'float' : 'left','position' : 'static',
                            'padding-top' : 3,'padding-right' : 0}
-                ,className='pt-4')
+                ,className='w-30 h-30')
             ],href='http://127.0.0.1:6500/learning'),
 
-            html.P('The children education indicators includes indicators related to children from their \n'
-                   'nursery to lower secondary education. there are also indicators to schools infrastructures such as \n'
-                   'Proportions of schools with access to electricity, Proportions of schools with access to internet, proportions of schools \n'
-                   'with basic handwashing services and many more.',className='text-info bg-light pt-3')
+            html.P('there are also indicators to schools net attendance rate in primary and secondary schools, also infrastructures such as \n'
+                   'access to electricity, access to internet and schools\n'
+                   'with basic handwashing services.',className='text-info bg-light pt-3')
         ],width=4)
        ]),
 
@@ -78,13 +75,11 @@ layout = dbc.Container([
                     src='https://www.interiorhealth.ca/sites/default/files/styles/details_page_banner_mobile/public/2021-10/Children%20%26%20Youth%20Health%20Banner.png?itok=PSS8vt_J',
                     style={'height' : '60%','width': '30%',
                            'float' : 'left','position' : 'static',
-                           'padding-top' : 3,'padding-right' : 0})
+                           'padding-top' : 3,'padding-right' : 0},className='w-30 h-30')
 
             ],href='http://127.0.0.1:6500/pages/survive-and-thrive'),
-            html.P('Survive and thrive children related indicators includes adolescent birth rate, birth attended by skilled person, \n'
-                   'Underfive mortality rate, Neonatal mortality rate, malnutrition (stunting, wasting and overweight) \n'
-                   'infants receiving measles containing vaccine (MCV), surviving receiving 3 doses of diphtheria-\n'
-                   'tetanus-pertussis (DTP3)',className='text-info bg-light pt-3')
+            html.P('Survive and thrive children related indicators such as adolescent birth rate, \n'
+                   'Underfive mortality rate, Neonatal mortality rate, malnutrition and vaccination',className='text-info bg-light pt-3')
         ],width=4),
 
         dbc.Col([
@@ -95,11 +90,10 @@ layout = dbc.Container([
                     style={'height' : '60%','width': '30%',
                            'float' : 'left','position' : 'static',
                            'padding-top' : 3,'padding-right' : 0}
-                )
+                ,className='w-30 h-30')
             ],href='http://127.0.0.1:6500/child-poverty'),
-            html.P('Children Poverty related indicators includes children living in households in extreme poverty. \n'
-                   'Children living below the national poverty line, children living in all its dimensions according to national definitions \n'
-                   'and proportions of child populations covered by social protection floors/systems',className='text-info bg-light pt-3')
+            html.P('Children Poverty related indicators such as children living in households in extreme poverty. \n'
+                   'Children living below the national poverty line',className='text-info bg-light pt-3')
         ],width=4),
 
         dbc.Col([
@@ -109,9 +103,9 @@ layout = dbc.Container([
                     src='https://thewhistler.ng/wp-content/uploads/2017/10/Africa-children-1.jpg',
                     style={'height' : '60%','width': '30%',
                            'float' : 'left','position' : 'static',
-                           'padding-top' : 0,'padding-right' : 0})
+                           'padding-top' : 0,'padding-right' : 0},className='w-30 h-30')
             ],href='http://127.0.0.1:6500/population'),
-            html.P('This part shows the population who are children in Rwanda. the data used is from fifth Rwanda \n'
+            html.P('Shows the population who are children in Rwanda. the data used is from fifth Rwanda \n'
                    'population and census carried out in 2022. the data are disaggregated by gender and age group.',className='text-info bg-light pt-3')
         ])
     ]),
@@ -127,7 +121,7 @@ layout = dbc.Container([
                         'height' :'100%','width':'30%',
                         'padding-top' :0,'padding-bottom':0
                 }
-            )
+            ,className='w-25')
         ])
         ],width=4),
 
@@ -140,7 +134,7 @@ layout = dbc.Container([
                         'float':'center', 'position':'relative',
                         'padding-top' :0,'padding-bottom':0
                     }
-                )
+                ,className='w-40 h-20')
             ])
         ],width=4),
 
@@ -153,11 +147,13 @@ layout = dbc.Container([
                         'float':'right','position':'relative',
                         'padding-top' :0,'padding-bottom':0
                     }
-                )
+                ,className='w-25')
             ])
         ],width=4)
 
-    ])
+    ]),
+    html.Br(),
+    html.Br()
 
 
 ])

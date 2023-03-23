@@ -10,6 +10,9 @@ import dash
 from dash import Dash, html
 import dash_bootstrap_components as dbc
 
+
+
+
 #importing datasets
 
 
@@ -20,7 +23,7 @@ header = dbc.Navbar(
         [
             dbc.Row([
                     dbc.Nav([
-                        dbc.NavLink(page["name"], href=page["path"])
+                        dbc.NavLink(page["name"], href=page["path"],className='text-black fw-bold')
                         for page in dash.page_registry.values()
                     ])
             ])
@@ -31,7 +34,7 @@ header = dbc.Navbar(
     color='blue'
 )
 
-app.layout = dbc.Container([header, dash.page_container], fluid=False)
+app.layout = dbc.Container([header, dash.page_container], fluid=True,className='bg-light')
 
 #if __name__ == '__main__':
 app.run_server(debug=True,port=6500)

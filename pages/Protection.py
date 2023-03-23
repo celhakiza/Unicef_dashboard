@@ -53,7 +53,7 @@ layout = dbc.Container([
             html.Label('Children registered in Civil Authority',className="text-center text-primary mb-4 font-weight-bold"),
             html.P('This graph shows the trend in registration of Children at civil authority.\n'
                    'the data are disaggregated by sex (Both sexes, Male, Female). the disaggregated by Male and Female\n'
-                   'are only available from 2o21. to select data, we use the same checklist as that of child labor'),
+                   'are only available from 2021. to select data, we use the same checklist as that of child labor'),
             dcc.Graph(id='registration',figure={}),
             dcc.Markdown('Source: DHS, NISR',className="text-center text-primary mb-4 font-weight-bold")
         ])
@@ -105,6 +105,5 @@ def regist(selregi):
 
 
 #app.run_server(debug=True, port=8000)
-
 
 

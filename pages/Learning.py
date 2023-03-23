@@ -38,26 +38,31 @@ layout = dbc.Container([
 
         ])
     ,
-    dcc.Markdown('Source: MINEDUC',className="text-center text-primary mb-4 font-weight-bold")]
-    ),
-    html.Br(),
+    dcc.Markdown('Source: MINEDUC',className="text-center text-primary mb-4 font-weight-bold")
+    ]),
+    html.Hr(),
+
     dbc.Row([
-        dbc.Col([
-            html.Div('Select province',className="text-center text-primary mb-4 font-weight-bold"),
-            dcc.Dropdown(id='prov',
-                         value='City of Kigali',
-                         options=[{'label':x,'value':x} for x in df_primary['province'].unique()]),
-            html.Div(id='sent-provi')
-        ])
+        html.Div('Education',className='text-center text-success mb-4 font-weight-bold')
     ]),
     dbc.Row([
         dbc.Col([
             html.Div('Select district',className="text-center text-primary mb-4 font-weight-bold"),
-            dcc.Dropdown(id='distr-dropdown',
-                         multi=True,
-                         options=[]),
-            dcc.Graph(id='graph-pri',figure={})
-        ])
+            html.Div('Primary Education',className="text-center text-primary mb-4 font-weight-bold"),
+            dcc.Dropdown(id='district',
+                         value='Bugesera',
+                         options=[{'label':x,'value':x} for x in sorted(df_primary['district'].unique())],className='text-primary'),
+            html.Div(id='sent-provi'),
+            dcc.Graph(id='graph-pr',figure={})
+
+        ],width=6),
+
+        dbc.Col([
+            html.Div('Secondary Education ',className="text-center text-primary mb-4 font-weight-bold"),
+            html.Div(id='sent-sec'),
+            dcc.Graph(id='graph-sec',figure={}),
+            dcc.Markdown('Source: Fifth Rwanda population and Housing census',className="text-center text-primary mb-4 font-weight-bold")
+        ],width=6)
     ])
 
 ])
@@ -89,35 +94,35 @@ def infr(slctinf):
     fig.update_traces(showlegend=False)
     return fig
 
+# @callback(
+#     Output('distr-dropdown','options'),
+#     Input('prov','value')
+# )
+#
+# def set_cities_options(choosen_province):
+#     dff_sel_province=df_primary[df_primary['province']==choosen_province]
+#     return [{'label':x,'value':x} for x in dff_sel_province['district'][1:].unique()]
+#
+# @callback(
+#     Output('distr-dropdown','value'),
+#     Input('distr-dropdown','options')
+# )
+#
+# def set_district_value(available_options):
+#
+#     return[x['value'] for x in available_options]
+
+
 @callback(
-    Output('distr-dropdown','options'),
-    Input('prov','value')
+    Output('sent-provi','children'),
+    Output('graph-pr','figure'),
+    Input('district','value')
 )
-
-def set_cities_options(choosen_province):
-    dff_sel_province=df_primary[df_primary['province']==choosen_province]
-    return [{'label':x,'value':x} for x in dff_sel_province['district'][1:].unique()]
-
-@callback(
-    Output('distr-dropdown','value'),
-    Input('distr-dropdown','options')
-)
-
-def set_district_value(available_options):
-
-    return[x['value'] for x in available_options]
-
-
-@callback(
-    Output('graph-pri','figure'),
-    Input('prov','value'),
-    Input('distr-dropdown','value')
-)
-def update_graph(selected_pro,selected_distr):
+def update_graph_pri(selected_distr):
     if len(selected_distr) == 0:
         return dash.no_update
     else:
-        dff_pop_prim = df_primary[(df_primary['province'] == selected_pro) & (df_primary['district'].isin(selected_distr))].sum().squeeze()[2:5]
+        dff_pop_prim = df_primary[(df_primary['district'] == selected_distr)].sum().squeeze()[2:5]
         # convert series into a dataframe
         dff_pop_prim = pd.DataFrame(dff_pop_prim)
         # reset index of a dataframe
@@ -128,6 +133,50 @@ def update_graph(selected_pro,selected_distr):
         fig = px.bar(dff_pop_prim,
                      x='Sex',
                      y='percentage',
+                     text='percentage',
                      color='Sex')
         fig.update_layout(yaxis_title='Percentage',title='Percentage of 6-11 age in primary school in {} district'.format(selected_distr))
-        return fig
+
+        fig.update_traces(showlegend=False)
+
+        return (('In {} district, {} percent of children between\n'
+                    ' 6-11 years enrolled in primary education, female are {}\n'
+                    ' percent while male are {} percent.\n'
+                 ''.format(selected_distr,round(df_primary[df_primary['district']==selected_distr].squeeze()[2],1),
+                           round(df_primary[df_primary['district']==selected_distr].squeeze()[4],1),
+                           round(df_primary[df_primary['district']==selected_distr].squeeze()[3],1))),fig)
+
+@callback(
+    Output('sent-sec','children'),
+    Output('graph-sec','figure'),
+    Input('district','value')
+)
+def update_graph_sec(select):
+    if len(select) == 0:
+        return dash.no_update
+
+    else:
+        dff_pop_sec = df_secondary[(df_secondary['district'] == select)].sum().squeeze()[2:5]
+        # convert series into a dataframe
+        dff_pop_sec = pd.DataFrame(dff_pop_sec)
+        # reset index of a dataframe
+        dff_pop_sec = dff_pop_sec.reset_index()
+        # rename the columns of a dataframe
+        dff_pop_sec = dff_pop_sec.rename(columns={'index': 'Sex', 0: 'percentage'})
+
+        fig = px.bar(dff_pop_sec,
+                     x='Sex',
+                     y='percentage',
+                     text='percentage',
+                     color='Sex')
+        fig.update_layout(yaxis_title='Percentage',
+                          title='Percentage of 12-17 age in secondary school in {} district'.format(select))
+        fig.update_traces(showlegend=False)
+
+        return (('In {} district, {} percent of children between\n'
+                 ' 12-17 years enrolled in secondary education, female are {}\n'
+                 ' percent while male are {} percent.\n'
+                 ''.format(select, round(df_secondary[df_secondary['district'] == select].squeeze()[2], 1),
+                           round(df_secondary[df_secondary['district'] == select].squeeze()[4], 1),
+                           round(df_secondary[df_secondary['district'] == select].squeeze()[3],1))), fig)
+
