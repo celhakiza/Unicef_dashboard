@@ -12,16 +12,16 @@ import plotly.express as px
 dash.register_page(__name__,order=1)
 
 #import datasets into pycharm
-df_adolescent_birthrate = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\adolescent_res_melt.csv')
-df_birth_attended_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\birth_attended_res_melt.csv')
-df_birth_attended_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\attended_skilled_province_melt.csv')
-df_vaccine = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\health_vaccine.csv')
-df_malnutrition = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\mal_dataset.csv')
-df_neonatal_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\neonatal_res_melt.csv')
-df_neonatal_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\neonatal_sex_melt.csv')
-df_underfive_mort_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\underfive_mortality_province_melt.csv')
-df_underfive_mort_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\underfive_mortality_residence_melt.csv')
-df_underfive_mort_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\underfive_mortality_sex_melt.csv')
+df_adolescent_birthrate = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\adolescent_res_melt.csv')
+df_birth_attended_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\birth_attended_res_melt.csv')
+df_birth_attended_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\attended_skilled_province_melt.csv')
+df_vaccine = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\health_vaccine.csv')
+df_malnutrition = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\mal_dataset.csv')
+df_neonatal_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\neonatal_res_melt.csv')
+df_neonatal_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\neonatal_sex_melt.csv')
+df_underfive_mort_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\underfive_mortality_province_melt.csv')
+df_underfive_mort_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\underfive_mortality_residence_melt.csv')
+df_underfive_mort_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\underfive_mortality_sex_melt.csv')
 
 # app=dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],
 #               meta_tags=[{'name': 'viewport',
@@ -47,7 +47,7 @@ layout = dbc.Container([
                     #              value='Both',
                     #              options=[{'label':x,'value':x} for x in df_adolescent_birthrate['residence'].unique()]),
                     dcc.Graph(id='graph-adol',figure={}),
-                    dcc.Markdown('Source: DHS 2019/2020')
+                    dcc.Markdown('Source: DHS, NISR')
                 ]
             ,width=4),
             dbc.Col(
@@ -56,7 +56,7 @@ layout = dbc.Container([
                    dcc.Dropdown(id='residence-birth',
                                 multi=False,
                                 value='Both',
-                                options=[{'label':x,'value':x} for x in df_birth_attended_res['residence'].unique()]),
+                                options=[{'label':x,'value':x} for x in df_birth_attended_res['residence'].unique()],className='w-25'),
                    dcc.Graph(id='skilled-birth-res',figure={})
 
                ],width=4),
@@ -68,7 +68,7 @@ layout = dbc.Container([
                     dcc.Dropdown(id='residence-province',
                                  multi=True,
                                  value=['Kigali city'],
-                                 options=[{'label':x,'value':x} for x in df_birth_attended_province['Province'].unique()]),
+                                 options=[{'label':x,'value':x} for x in df_birth_attended_province['Province'].unique()],className='w-50'),
                     dcc.Graph(id='skilled-birth-pro',figure={}),
                     dcc.Markdown('Source:DHS 2020')
                 ],width=4)
@@ -85,7 +85,7 @@ layout = dbc.Container([
                 dcc.Dropdown(id='vaccination',
                              value='DTP3',
                              options=[{'label':x,'value':x} for x in df_vaccine['indicator'].unique()]
-                             ),
+                             ,className='w-25'),
                 dcc.Graph(id='out-vaccination',figure={})
             ],width=6),
         dbc.Col(
@@ -94,7 +94,7 @@ layout = dbc.Container([
                 dcc.Dropdown(id='malnutrition',
                          multi=True,
                          value=['stunting'],
-                         options=[{'label':x,'value':x} for x in df_malnutrition['indicator'].unique()]),
+                         options=[{'label':x,'value':x} for x in df_malnutrition['indicator'].unique()],className='w-50'),
                 dcc.Graph(id='out-malnutrition',figure={})
     ],width=6),
 
@@ -109,7 +109,7 @@ layout = dbc.Container([
                     dcc.Dropdown(id='neonatal-sex',
                                  multi=False,
                                  value='Female',
-                                 options=[{'label':x,'value':x} for x in df_neonatal_sex['Sex'].unique()]),
+                                 options=[{'label':x,'value':x} for x in df_neonatal_sex['Sex'].unique()],className='w-50'),
                     dcc.Graph(id='grap-neon-sex',figure={})
                 ]
             ,width=6),
@@ -119,7 +119,7 @@ layout = dbc.Container([
                  dcc.Dropdown(id='neonatal-res',
                               multi=False,
                               value='Both',
-                              options=[{'label':x,'value':x} for x in df_neonatal_res['residence'].unique()]),
+                              options=[{'label':x,'value':x} for x in df_neonatal_res['residence'].unique()],className='w-50'),
                  dcc.Graph(id='graph-neon-res',figure={})
              ]
          ,width=6)
@@ -136,7 +136,7 @@ layout = dbc.Container([
                   dcc.Dropdown(id='underfive-mor-sex',
                                multi=False,
                                value='Both',
-                               options=[{'label':x,'value':x} for x in df_underfive_mort_sex['Sex'].unique()]),
+                               options=[{'label':x,'value':x} for x in df_underfive_mort_sex['Sex'].unique()],className='w-50'),
                   dcc.Graph(id='underfive-graph-sex',figure={})
                 ]
             ,width=4),
@@ -147,7 +147,7 @@ layout = dbc.Container([
                   dcc.Dropdown(id='underfive-mor-res',
                                multi=True,
                                value=['Urban'],
-                               options=[{'label':x,'value':x} for x in df_underfive_mort_res['residence'].unique()]),
+                               options=[{'label':x,'value':x} for x in df_underfive_mort_res['residence'].unique()],className='w-50'),
                   dcc.Graph(id='underfive-graph-res',figure={})
                 ]
             ,width=4),
@@ -158,7 +158,7 @@ layout = dbc.Container([
                   dcc.Dropdown(id='underfive-mor-prov',
                                multi=True,
                                value=['Kigali city'],
-                               options=[{'label':x,'value':x} for x in df_underfive_mort_province['Province'].unique()]),
+                               options=[{'label':x,'value':x} for x in df_underfive_mort_province['Province'].unique()],className='w-50'),
                   dcc.Graph(id='underfive-graph-prov',figure={})
                 ]
         ,width=4),
@@ -182,32 +182,62 @@ def adole(resid):
                barmode='group')
     fig.update_layout(xaxis_title='Year',yaxis_title='% adolescent birth rate',title='Adolescent birth rate')
     fig.update_traces(showlegend=False)
+    fig.update_layout(
+    title_font_color = 'blue',
+    font_color = 'blue',
+    font_family = 'Times New Roman',
+    legend_title_font_color = 'blue',
+    title_font_family = 'Arial',
+    showlegend = False,
+    plot_bgcolor = 'white')
     return fig
 @callback(
     Output('out-malnutrition','figure'),
     Input('malnutrition','value'))
 def mal(mal):
-    df_malnutrition_df = df_malnutrition[df_malnutrition['indicator'].isin(mal)]
-    fig = px.line(df_malnutrition_df,
-                 x='year',
-                 y=['Both','Male','Female'],
-                  color='indicator')
-    fig.update_layout(xaxis_title='Year',yaxis_title='Percentage of malnutrition', title='Trend in malnutrition indicators')
-    fig.update_traces(showlegend = False)
-    return fig
+    if len(mal)==0:
+        return dash.no_update
+    else:
+        df_malnutrition_df = df_malnutrition[df_malnutrition['indicator'].isin(mal)]
+        fig = px.line(df_malnutrition_df,
+                     x='Year',
+                     y=['Both','Male','Female'],
+                      color='indicator')
+        fig.update_layout(xaxis_title='Year',yaxis_title='Percentage of malnutrition', title='Trend in malnutrition indicators')
+        fig.update_traces(showlegend = False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 @callback(
     Output('skilled-birth-res','figure'),
     Input('residence-birth','value')
 )
 def skilled_res(slctresid):
-    df_birth_attended_res_df=df_birth_attended_res[df_birth_attended_res['residence'] == slctresid]
-    fig = px.line(df_birth_attended_res_df,
-                 x='Year',
-                 y='percentage'
-                 #barmode='group'
-)
-    fig.update_layout(xaxis_title='Year', yaxis_title = 'Percentage', title = 'Trend in birth attendance by skilled person for {}'.format(slctresid))
-    return fig
+    if len(slctresid) ==0:
+        return dash.no_update
+    else:
+        df_birth_attended_res_df=df_birth_attended_res[df_birth_attended_res['residence'] == slctresid]
+        fig = px.line(df_birth_attended_res_df,
+                     x='Year',
+                     y='percentage'
+                     #barmode='group'
+    )
+        fig.update_layout(xaxis_title='Year', yaxis_title = 'Percentage', title = 'Trend in birth attendance by skilled person for {}'.format(slctresid))
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 @callback(
     Output('skilled-birth-pro','figure'),
@@ -215,51 +245,96 @@ def skilled_res(slctresid):
 )
 
 def skilled_pro(slctpro):
-    df_birth_attended_province_df = df_birth_attended_province[df_birth_attended_province['Province'].isin(slctpro)]
-    fig = px.line(df_birth_attended_province_df,
-                 x='year',
-                 y='percentage',
-                  color='Province')
-    fig.update_layout(xaxis_title = 'Year', yaxis_title = 'percentage', title = 'Trend in birth attendance by Province')
-    fig.update_traces(showlegend=False)
-    return fig
+    if len(slctpro)==0:
+        return dash.no_update
+    else:
+        df_birth_attended_province_df = df_birth_attended_province[df_birth_attended_province['Province'].isin(slctpro)]
+        fig = px.line(df_birth_attended_province_df,
+                     x='year',
+                     y='percentage',
+                      color='Province')
+        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'percentage', title = 'Trend in birth attendance by Province')
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 @callback(
     Output('out-vaccination','figure'),
     Input('vaccination','value')
 )
 def vaccine(slctvac):
-    df_vaccine_df = df_vaccine[df_vaccine['indicator'] == slctvac]
-    fig = px.bar(df_vaccine_df,
-                 x='year',
-                 y=['Both','Male','Female'],
-                 barmode='group')
-    fig.update_layout(xaxis_title='Year',yaxis_title='Percentage',title='Percentage of vaccine for {}'.format(slctvac))
-    return fig
+    if len(slctvac)==0:
+        return dash.no_update
+    else:
+        df_vaccine_df = df_vaccine[df_vaccine['indicator'] == slctvac]
+        fig = px.bar(df_vaccine_df,
+                     x='year',
+                     y=['Both','Male','Female'],
+                     barmode='group')
+        fig.update_layout(xaxis_title='Year',yaxis_title='Percentage',title='Percentage of vaccine for {}'.format(slctvac))
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 @callback(
     Output('grap-neon-sex','figure'),
     Input('neonatal-sex','value')
 )
 def neonat_sex(slctsex):
-    df_neonatal_sex_df =  df_neonatal_sex[ df_neonatal_sex['Sex'] == slctsex]
-    fig = px.line(df_neonatal_sex_df,
-                  x='year',
-                  y='per_thousand')
-    fig.update_layout(xaxis_title='Year',yaxis_title='Per_thousand',title='Neonatal mortality rate for {}'.format(slctsex))
-    return fig
+    if len(slctsex)==0:
+        return dash.no_update
+    else:
+
+        df_neonatal_sex_df =  df_neonatal_sex[ df_neonatal_sex['Sex'] == slctsex]
+        fig = px.line(df_neonatal_sex_df,
+                      x='year',
+                      y='per_thousand')
+        fig.update_layout(xaxis_title='Year',yaxis_title='Per_thousand',title='Neonatal mortality rate for {}'.format(slctsex))
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 @callback(
     Output('graph-neon-res','figure'),
     Input('neonatal-res','value')
 )
 
 def neonat_res(slctneres):
-    df_neonatal_res_df = df_neonatal_res[df_neonatal_res['residence'] == slctneres]
-    fig = px.line(df_neonatal_res_df,
-                  x='year',
-                  y='per_thousand')
-    fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Per_thousand',title = 'Neonatal mortality for {}'.format(slctneres))
-    return fig
+    if len(slctneres)==0:
+        return dash.no_update
+    else:
+        df_neonatal_res_df = df_neonatal_res[df_neonatal_res['residence'] == slctneres]
+        fig = px.line(df_neonatal_res_df,
+                      x='year',
+                      y='per_thousand')
+        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Per_thousand',title = 'Neonatal mortality for {}'.format(slctneres))
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 @callback(
     Output('underfive-graph-sex','figure'),
@@ -267,12 +342,23 @@ def neonat_res(slctneres):
 )
 
 def underfive_sex(selctsex):
-    df_underfive_mort_sex_df = df_underfive_mort_sex[df_underfive_mort_sex['Sex'] ==selctsex]
-    fig = px.scatter(df_underfive_mort_sex_df,
-                  x='year',
-                  y='per_thousand')
-    fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Under five mortality rate (per 1000)',title = 'Under five mortality rate for {}'.format(selctsex))
-    return fig
+    if len(selctsex)==0:
+        return dash.no_update
+    else:
+        df_underfive_mort_sex_df = df_underfive_mort_sex[df_underfive_mort_sex['Sex'] ==selctsex]
+        fig = px.scatter(df_underfive_mort_sex_df,
+                      x='year',
+                      y='per_thousand')
+        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Under five mortality rate (per 1000)',title = 'Under five mortality rate for {}'.format(selctsex))
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 @callback(
     Output('underfive-graph-res','figure'),
@@ -280,32 +366,53 @@ def underfive_sex(selctsex):
 )
 
 def underfive_res(selctres):
-    df_underfive_mort_res_df = df_underfive_mort_res[df_underfive_mort_res['residence'].isin(selctres)]
-    fig = px.scatter(df_underfive_mort_res_df,
-                  x='year',
-                  y='per_thousand',
-                    color='residence',
-                     size='per_thousand')
+    if len(selctres)==0:
+        return dash.no_update
+    else:
+        df_underfive_mort_res_df = df_underfive_mort_res[df_underfive_mort_res['residence'].isin(selctres)]
+        fig = px.scatter(df_underfive_mort_res_df,
+                      x='year',
+                      y='per_thousand',
+                        color='residence',
+                         size='per_thousand')
 
-    fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Under five mortality rate (per 1000)',title = 'Under five mortality rate for {}'.format(selctres))
-    fig.update_traces(showlegend=False)
-    return fig
+        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Under five mortality rate (per 1000)',title = 'Under five mortality rate for {}'.format(selctres))
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 @callback(
     Output('underfive-graph-prov','figure'),
     Input('underfive-mor-prov','value')
 )
 
-
 def underfive_pro(selctpro):
-    df_underfive_mort_province_df=df_underfive_mort_province[df_underfive_mort_province['Province'].isin(selctpro)]
-    fig = px.line(df_underfive_mort_province_df,
-                  x='year',
-                  y='per_thousand',
-                  color='Province')
-    fig.update_layout(xaxis_title = 'Year',yaxis_title = 'Under five mortality rate (per 1000)',title = 'Under five mortality rate by Province')
-    fig.update_traces(showlegend=False)
-    return fig
+    if len(selctpro) ==0:
+        return dash.no_update
+    else:
+        df_underfive_mort_province_df=df_underfive_mort_province[df_underfive_mort_province['Province'].isin(selctpro)]
+        fig = px.line(df_underfive_mort_province_df,
+                      x='year',
+                      y='per_thousand',
+                      color='Province')
+        fig.update_layout(xaxis_title = 'Year',yaxis_title = 'Under five mortality rate (per 1000)',title = 'Under five mortality rate by Province')
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 #app.run_server(debug=True,port=7000)
 

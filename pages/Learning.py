@@ -24,7 +24,7 @@ layout = dbc.Container([
             dcc.Dropdown(id='learning',
                          value=['Both'],
                          multi=True,
-                         options=[{'label':x,'value':x} for x in df_organized['Sex'].unique()]),
+                         options=[{'label':x,'value':x} for x in df_organized['Sex'].unique()],className='w-50'),
             dcc.Graph(id='graph-learning',figure={})
         ],width=6),
 
@@ -51,7 +51,7 @@ layout = dbc.Container([
             html.Div('Primary Education',className="text-center text-primary mb-4 font-weight-bold"),
             dcc.Dropdown(id='district',
                          value='Bugesera',
-                         options=[{'label':x,'value':x} for x in sorted(df_primary['district'].unique())],className='text-primary'),
+                         options=[{'label':x,'value':x} for x in sorted(df_primary['district'].unique())],className='text-primary w-25'),
             html.Div(id='sent-provi'),
             dcc.Graph(id='graph-pr',figure={})
 
@@ -72,27 +72,49 @@ layout = dbc.Container([
     Input('learning','value')
 )
 def learning(slctlearn):
-    df_organized_df = df_organized[df_organized['Sex'].isin(slctlearn)]
-    fig = px.bar(df_organized_df,
-                 x='year',
-                 y='percentage',
-                 barmode='group',
-                 color='Sex')
-    fig.update_layout(xaxis_title='Year',yaxis_title='Percentage (%)',title='Participation in organized learning')
-    return fig
+    if len(slctlearn) ==0:
+        return dash.no_update
+    else:
+        df_organized_df = df_organized[df_organized['Sex'].isin(slctlearn)]
+        fig = px.bar(df_organized_df,
+                     x='year',
+                     y='percentage',
+                     barmode='group',
+                     color='Sex')
+        fig.update_layout(xaxis_title='Year',yaxis_title='Percentage (%)',title='Participation in organized learning')
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 @callback(
     Output('graph-infr','figure'),
     Input('infr','value')
 )
 def infr(slctinf):
-    df_school_inf_df =df_school_infr[df_school_infr['indicator'].isin(slctinf)]
-    fig=px.line(df_school_inf_df,
-                x='year',
-                y='percentage',
-                color='indicator')
-    fig.update_layout(xaxis_title='Year',yaxis_title='Percentage (%)',title='Access to infrastructures for Schools')
-    fig.update_traces(showlegend=False)
-    return fig
+    if len(slctinf) ==0:
+        return dash.no_update
+    else:
+        df_school_inf_df =df_school_infr[df_school_infr['indicator'].isin(slctinf)]
+        fig=px.line(df_school_inf_df,
+                    x='year',
+                    y='percentage',
+                    color='indicator')
+        fig.update_layout(xaxis_title='Year',yaxis_title='Percentage (%)',title='Access to infrastructures for Schools')
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 # @callback(
 #     Output('distr-dropdown','options'),
@@ -138,6 +160,14 @@ def update_graph_pri(selected_distr):
         fig.update_layout(yaxis_title='Percentage',title='Percentage of 6-11 age in primary school in {} district'.format(selected_distr))
 
         fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
 
         return (('In {} district, {} percent of children between\n'
                     ' 6-11 years enrolled in primary education, female are {}\n'
@@ -172,6 +202,14 @@ def update_graph_sec(select):
         fig.update_layout(yaxis_title='Percentage',
                           title='Percentage of 12-17 age in secondary school in {} district'.format(select))
         fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
 
         return (('In {} district, {} percent of children between\n'
                  ' 12-17 years enrolled in secondary education, female are {}\n'

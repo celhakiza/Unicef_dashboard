@@ -34,7 +34,7 @@ header = dbc.Navbar(
     color='blue'
 )
 
-app.layout = dbc.Container([header, dash.page_container], fluid=True,className='bg-light')
+app.layout = dbc.Container([header, dash.page_container], fluid=True) #className='bg-light')
 
 #if __name__ == '__main__':
 app.run_server(debug=True,port=6500)

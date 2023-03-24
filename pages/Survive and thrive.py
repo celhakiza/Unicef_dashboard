@@ -12,16 +12,16 @@ import plotly.express as px
 #dash.register_page(__name__)
 
 #import datasets into pycharm
-df_adolescent_birthrate = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\adolescent_res_melt.csv')
-df_birth_attended_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\birth_attended_res_melt.csv')
-df_birth_attended_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\attended_skilled_province_melt.csv')
-df_vaccine = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\health_vaccine.csv')
-df_malnutrition = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\mal_dataset.csv')
-df_neonatal_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\neonatal_res_melt.csv')
-df_neonatal_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\neonatal_sex_melt.csv')
-df_underfive_mort_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\underfive_mortality_province_melt.csv')
-df_underfive_mort_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\underfive_mortality_residence_melt.csv')
-df_underfive_mort_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\underfive_mortality_sex_melt.csv')
+df_adolescent_birthrate = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\adolescent_res_melt.csv')
+df_birth_attended_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\birth_attended_res_melt.csv')
+df_birth_attended_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\attended_skilled_province_melt.csv')
+df_vaccine = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\health_vaccine.csv')
+df_malnutrition = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\mal_dataset.csv')
+df_neonatal_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\neonatal_res_melt.csv')
+df_neonatal_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\neonatal_sex_melt.csv')
+df_underfive_mort_province = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\underfive_mortality_province_melt.csv')
+df_underfive_mort_res = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\underfive_mortality_residence_melt.csv')
+df_underfive_mort_sex = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\underfive_mortality_sex_melt.csv')
 
 app=dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],
               meta_tags=[{'name': 'viewport',

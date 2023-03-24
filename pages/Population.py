@@ -32,7 +32,7 @@ layout = dbc.Container([
             html.P('Children share to total population',className="text-center text-primary mb-4 font-weight-bold"),
             html.Div(id='sent-sha'),
             dcc.Graph(id='graph-share',figure={},className='w-75')
-        ],width=6)
+        ],width={'size':5, 'offset':1})
     ]),
     dbc.Row(html.P('Source: Fifth Population and Housing census 2022',className="text-center text-primary mb-4 font-weight-bold"))
 ])
@@ -57,7 +57,15 @@ def pop(slctdistrict):
                      y='total_pop',
                      color='Sex')
         fig.update_layout(yaxis_title = 'Children Population',title ='Children in {} district'.format(slctdistrict))
-        fig.update_traces(showlegend=False)
+        fig.update_layout(
+        title_font_color = 'blue',
+        font_color = 'blue',
+        font_family = 'Times New Roman',
+        legend_title_font_color = 'blue',
+        title_font_family = 'Arial',
+        showlegend = False,
+        plot_bgcolor ='white')
+
         return (('In {} district, total number of children between\n'
                  ' 0-17 age is {}, female are {}\n'
                  ' while male are {}.\n'
@@ -89,7 +97,16 @@ def pop_share(slctsha):
                      y='per_pop_share',
                      color='Sex')
         fig.update_layout(yaxis_title='Children share Population', title='Children share in {} district'.format(slctsha))
-        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            autotypenumbers='strict',
+            showlegend=False,
+            plot_bgcolor='white')
+
         return (('In {} district, children between 0-17 age share {} percent of total population \n'
                  ', female share is {} percent of the total females\n'
                  ' while male share is {} percent of the total male in district.\n'

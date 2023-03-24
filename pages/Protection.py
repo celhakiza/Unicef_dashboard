@@ -10,9 +10,12 @@ import plotly.express as px
 dash.register_page(__name__,order=2)
 
 #import dataset
-df_protection_female_violence = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\protection_female_violence.csv')
-df_child_labor = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\child_labor_sex_melt.csv')
-df_child_birth_registration = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\UNICEF\EICV dash\child_registration_melt.csv')
+df_protection_female_violence = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\protection_female_violence.csv')
+df_child_labor = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\child_labor_sex_melt.csv')
+df_child_birth_registration = pd.read_csv(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\child_registration_melt.csv')
+
+df_regist_census = pd.read_excel(r'C:\Users\ENVY\PycharmProjects\Unicef_dashboard\EICV dash\birth_registration_0_17.xlsx')
+
 #print(df_child_birth_registration)
 
 # app=dash.Dash(__name__,external_stylesheets=[dbc.themes.BOOTSTRAP],
@@ -33,7 +36,7 @@ layout = dbc.Container([
             dcc.Dropdown(id='women-violence',
                          multi=True,
                          value=['sexual violence'],
-                         options=[{'label':x,'value':x} for x in df_protection_female_violence['indicator'].unique()]),
+                         options=[{'label':x,'value':x} for x in df_protection_female_violence['indicator'].unique()],className='w-50'),
             dcc.Graph(id='graph-violence',figure={}),
             dcc.Markdown('Source: DHS, NISR',className="text-center text-primary mb-4 font-weight-bold")
         ],width=4),
@@ -44,7 +47,7 @@ layout = dbc.Container([
                    'between male and female or both.'),
             dcc.Checklist(id='child-labor',
                           value=['Both'],
-                          options=[{'label':x,'value':x} for x in df_child_labor['Sex'].unique()]),
+                          options=[{'label':x,'value':x} for x in df_child_labor['Sex'].unique()],className='w-25'),
             dcc.Graph(id='graph-labor',figure={}),
             dcc.Markdown('Source: EICV, NISR',className="text-center text-primary mb-4 font-weight-bold")
         ],width=4),
@@ -66,42 +69,75 @@ layout = dbc.Container([
     Input('women-violence','value')
 )
 def viol(seleviol):
-    df_protection_female_violence_df=df_protection_female_violence[df_protection_female_violence['indicator'].isin(seleviol)]
-    fig = px.line(df_protection_female_violence_df,
-                  x='Year',
-                  y='Female',
-                  color='indicator')
-    fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Percentage (%)',title = 'Violence against women and girls')
-    fig.update_traces(showlegend=False)
-    return fig
+    if len(seleviol) ==0:
+        return dash.no_update
+    else:
+        df_protection_female_violence_df=df_protection_female_violence[df_protection_female_violence['indicator'].isin(seleviol)]
+        fig = px.line(df_protection_female_violence_df,
+                      x='Year',
+                      y='Female',
+                      color='indicator')
+        fig.update_layout(xaxis_title = 'Year', yaxis_title = 'Percentage (%)',title = 'Violence against women and girls')
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 @callback(
     Output('graph-labor','figure'),
     Input('child-labor','value')
 )
 def labor(selab):
-    df_child_labor_df=df_child_labor[df_child_labor['Sex'].isin(selab)]
-    fig=px.line(df_child_labor_df,
-               x='year',
-               y='value',
-               color='Sex')
-               #barmode='group')
-    fig.update_layout(xaxis_title='Year', yaxis_title='Percentage of child labor',title = 'Child Labor')
-    fig.update_traces(showlegend=False)
-    return fig
+    if len(selab) ==0:
+        return dash.no_update
+    else:
+        df_child_labor_df=df_child_labor[df_child_labor['Sex'].isin(selab)]
+        fig=px.line(df_child_labor_df,
+                   x='year',
+                   y='value',
+                   color='Sex')
+                   #barmode='group')
+        fig.update_layout(xaxis_title='Year', yaxis_title='Percentage of child labor',title = 'Child Labor')
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 @callback(
     Output('registration','figure'),
     Input('child-labor','value')
 )
 def regist(selregi):
-    df_child_birth_registration_df = df_child_birth_registration[df_child_birth_registration['Sex'].isin(selregi)]
-    fig = px.bar(df_child_birth_registration_df,
-                 x='year',
-                 y='percentage',
-                 color='Sex',
-                 barmode='group')
-    fig.update_layout(xaxis_title='Year',yaxis_title = 'Percentage', title = 'Birth registration trend')
-    fig.update_traces(showlegend=False)
-    return fig
+    if len(selregi)==0:
+        return dash.no_update
+    else:
+        df_child_birth_registration_df = df_child_birth_registration[df_child_birth_registration['Sex'].isin(selregi)]
+        fig = px.bar(df_child_birth_registration_df,
+                     x='year',
+                     y='percentage',
+                     color='Sex',
+                     barmode='group')
+        fig.update_layout(xaxis_title='Year',yaxis_title = 'Percentage', title = 'Birth registration trend')
+        fig.update_traces(showlegend=False)
+        fig.update_layout(
+            title_font_color='blue',
+            font_color='blue',
+            font_family='Times New Roman',
+            legend_title_font_color='blue',
+            title_font_family='Arial',
+            showlegend=False,
+            plot_bgcolor='white')
+        return fig
 
 
 #app.run_server(debug=True, port=8000)
