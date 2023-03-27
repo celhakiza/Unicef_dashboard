@@ -18,7 +18,7 @@ layout = dbc.Container([
 
     dbc.Row([
        dbc.Col([
-           html.Label('Protection',className="text-primary mb-4 font-weight-bold"),
+           html.Label('Protection',className="text-primary mb-4 font-weight-bold mb-3"),
            html.A([
                html.Img(
                     src='https://cdn2.vectorstock.com/i/1000x1000/97/21/child-protection-sign-vector-25919721.jpg',
@@ -35,7 +35,7 @@ layout = dbc.Container([
            ],width=4),
 
         dbc.Col([
-            html.Label('Hygiene and Sanitation',className="text-primary mb-4 font-weight-bold"),
+            html.Label('Hygiene and Sanitation',className="text-primary mb-4 font-weight-bold mb-3"),
             html.A([
                 html.Img(
                     src='https://www.unicef.org/turkiye/sites/unicef.org.turkiye/files/styles/hero_desktop/public/UN0199405.jpg?itok=vGJFERuI',
@@ -51,7 +51,7 @@ layout = dbc.Container([
         ],width=4),
 
         dbc.Col([
-            html.Label('Education: Access to infrastructures at School',className="text-primary mb-4 font-weight-bold"),
+            html.Label('Education: Access to infrastructures at School',className="text-primary mb-4 font-weight-bold mb-3"),
             html.A([
                 html.Img(
                     src='https://www.thegaudium.com/wp-content/uploads/2021/11/The_Gaudium_International_School_Hyderabad_Role_Of_School_2021_11_3.jpg',
@@ -69,7 +69,7 @@ layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
-            html.Div('Survive and thrive',className='text-primary font-weight-bold m-3'),
+            html.Div('Survive and thrive',className='text-primary font-weight-bold mb-3'),
             html.A([
                 html.Img(
                     src='https://www.interiorhealth.ca/sites/default/files/styles/details_page_banner_mobile/public/2021-10/Children%20%26%20Youth%20Health%20Banner.png?itok=PSS8vt_J',
@@ -83,7 +83,7 @@ layout = dbc.Container([
         ],width=4),
 
         dbc.Col([
-            html.Div('Child Poverty',className='text-primary font-weight-bold m-3'),
+            html.Div('Child Poverty',className='text-primary font-weight-bold mb-3'),
             html.A([
                 html.Img(
                     src='https://www.compassion.com/Images/effects-of-poverty-on-children_144714_640x276.jpg',
@@ -97,7 +97,7 @@ layout = dbc.Container([
         ],width=4),
 
         dbc.Col([
-            html.Div('Population',className='text-primary font-weight-bold m-4'),
+            html.Div('Population',className='text-primary font-weight-bold mb-4'),
             html.A([
                 html.Img(
                     src='https://thewhistler.ng/wp-content/uploads/2017/10/Africa-children-1.jpg',
