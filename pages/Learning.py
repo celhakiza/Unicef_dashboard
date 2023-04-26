@@ -20,28 +20,33 @@ layout = dbc.Container([
     ]),
     dbc.Row([
         dbc.Col([
-            html.Label('Participation rate in organized learning (one year before the official primary entry age)',className="text-center text-primary mb-4 font-weight-bold"),
+            html.Label('Early Primary Education)',className="text-center text-primary mb-4 font-weight-bold"),
             dcc.Dropdown(id='learning',
                          value=['Both'],
                          multi=True,
                          options=[{'label':x,'value':x} for x in df_organized['Sex'].unique()],className='w-50'),
-            dcc.Graph(id='graph-learning',figure={})
+            dcc.Graph(id='graph-learning',figure={},
+                      style = {'width':'500px','height':'300px'})
         ],width=6),
 
         dbc.Col([
             html.Label('Access to infrastructures for Schools',className="text-center text-primary mb-4 font-weight-bold"),
+            html.Br(),
+            html.I('Here you find indicators related to: Access to electricity, computers, \n'
+                   'handwashing facilities and internet for nursery, primary and secondary education.'),
+            html.Br(),
             dcc.Dropdown(id='infr',
                          value=['Proportion of schools with access to electricity - Nursery'],
                          multi=True,
                          options=[{'label':x,'value':x} for x in df_school_infr['indicator'].unique()]),
-            dcc.Graph(id='graph-infr',figure={})
+            dcc.Graph(id='graph-infr',figure={},
+                      style = {'width':'600px','height':'300px'})
 
         ])
     ,
     dcc.Markdown('Source: MINEDUC',className="text-center text-primary mb-4 font-weight-bold")
     ]),
     html.Hr(),
-
     dbc.Row([
         html.Div('Education',className='text-center text-success mb-4 font-weight-bold')
     ]),
@@ -53,14 +58,16 @@ layout = dbc.Container([
                          value='Bugesera',
                          options=[{'label':x,'value':x} for x in sorted(df_primary['district'].unique())],className='text-primary w-25'),
             html.Div(id='sent-provi'),
-            dcc.Graph(id='graph-pr',figure={})
+            dcc.Graph(id='graph-pr',figure={},
+                      style = {'width':'400px','height':'300px'})
 
         ],width=6),
 
         dbc.Col([
             html.Div('Secondary Education ',className="text-center text-primary mb-4 font-weight-bold"),
             html.Div(id='sent-sec'),
-            dcc.Graph(id='graph-sec',figure={}),
+            dcc.Graph(id='graph-sec',figure={},
+                      style = {'width':'400px','height':'300px'}),
             dcc.Markdown('Source: Fifth Rwanda population and Housing census',className="text-center text-primary mb-4 font-weight-bold")
         ],width=6)
     ])
@@ -81,7 +88,7 @@ def learning(slctlearn):
                      y='percentage',
                      barmode='group',
                      color='Sex')
-        fig.update_layout(xaxis_title='Year',yaxis_title='Percentage (%)',title='Participation in organized learning')
+        fig.update_layout(xaxis_title='Year',yaxis_title='Percentage (%)',title='Early Primary education')
         fig.update_layout(
             title_font_color='blue',
             font_color='blue',
@@ -115,26 +122,6 @@ def infr(slctinf):
             showlegend=False,
             plot_bgcolor='white')
         return fig
-
-# @callback(
-#     Output('distr-dropdown','options'),
-#     Input('prov','value')
-# )
-#
-# def set_cities_options(choosen_province):
-#     dff_sel_province=df_primary[df_primary['province']==choosen_province]
-#     return [{'label':x,'value':x} for x in dff_sel_province['district'][1:].unique()]
-#
-# @callback(
-#     Output('distr-dropdown','value'),
-#     Input('distr-dropdown','options')
-# )
-#
-# def set_district_value(available_options):
-#
-#     return[x['value'] for x in available_options]
-
-
 @callback(
     Output('sent-provi','children'),
     Output('graph-pr','figure'),

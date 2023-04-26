@@ -25,13 +25,15 @@ layout = dbc.Container([
                          value='Bugesera',
                          options=[{'label':x,'value':x} for x in sorted(df_chil_pop['district'].unique())],className='w-25'),
             html.Div(id='sent-pop'),
-            dcc.Graph(id='graph-pop',figure={},className='w-75')
+            dcc.Graph(id='graph-pop',figure={},
+                      style = {'width':'400px','height':'300px'})
         ],width=6),
 
         dbc.Col([
             html.P('Children share to total population',className="text-center text-primary mb-4 font-weight-bold"),
             html.Div(id='sent-sha'),
-            dcc.Graph(id='graph-share',figure={},className='w-75')
+            dcc.Graph(id='graph-share',figure={},
+                      style = {'width':'400px','height':'300px'})
         ],width={'size':5, 'offset':1})
     ]),
     dbc.Row(html.P('Source: Fifth Population and Housing census 2022',className="text-center text-primary mb-4 font-weight-bold"))
@@ -66,7 +68,7 @@ def pop(slctdistrict):
         showlegend = False,
         plot_bgcolor ='white')
 
-        return (('In {} district, total number of children between\n'
+        return (('In {}, total number of children between\n'
                  ' 0-17 age is {}, female are {}\n'
                  ' while male are {}.\n'
                  ''.format(slctdistrict, round(df_chil_pop[df_chil_pop['district'] == slctdistrict].squeeze()[2], 1),
@@ -107,7 +109,7 @@ def pop_share(slctsha):
             showlegend=False,
             plot_bgcolor='white')
 
-        return (('In {} district, children between 0-17 age share {} percent of total population \n'
+        return (('In {}, children between 0-17 age share {} percent of total population \n'
                  ', female share is {} percent of the total females\n'
                  ' while male share is {} percent of the total male in district.\n'
                  ''.format(slctsha, round(df_chil_popul_share[df_chil_popul_share['district'] == slctsha].squeeze()[2], 1),

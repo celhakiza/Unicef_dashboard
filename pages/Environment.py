@@ -16,7 +16,7 @@ dash.register_page(__name__,order=3)
 
 layout = dbc.Container([
     dbc.Row([
-        html.H2('Environment related Indicators',className="text-center text-primary mb-4 font-weight-bold")
+        html.H2('Water, Sanitation and Hygiene related Indicators',className="text-center text-primary mb-4 font-weight-bold")
     ]),
 
     dbc.Row([

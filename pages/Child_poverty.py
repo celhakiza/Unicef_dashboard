@@ -15,16 +15,25 @@ layout = dbc.Container([
 
     dbc.Row([
         dbc.Col([
+            html.H4('Children Monetary Poverty',
+                    style={'color':'blue'}),
             html.Div('Select gender:',className="text-primary mb-4 font-weight-bold"),
             dcc.Checklist(id='pov',
                           value=['Male'],
                           options=[{'label':x,'value':x} for x in df_child_poverty['Sex'].unique()]),
 
-            dcc.Graph(id='pove-graph'),
+            dcc.Graph(id='pove-graph',
+                      style = {'width':'500px',
+                               'height':'300px'}),
             html.P(['Children poverty trends shows at which percentage are the population under the age of 18 who are below the \n'
                    'poverty line as the data from', html.Mark("EICV"), 'shows. the data are available for two EICV: one conducted in', html.Mark("2013/2014"), 'and the \n'
                    'other conducted in', html.Mark("2016/2017"),'.'])
-        ])
+        ], width=6),
+
+        dbc.Col([
+            html.H4('Multidimensional Overlapping Deprivation Analysis (MODA)',
+                    style={'color':'blue'})
+        ],width=6)
     ])
 ])
 @callback(
@@ -44,6 +53,7 @@ def pov(selesex):
         fig.update_traces(showlegend=True)
         fig.update_layout(
             title_font_color='blue',
+            yaxis_range=[44, 49],
             font_color='blue',
             font_family='Times New Roman',
             legend_title_font_color='blue',
